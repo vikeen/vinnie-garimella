@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @artwork.name %>
+</p>
+
+<p>
+  <b>Filename:</b>
+  <%= @artwork.filename %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @artwork.description %>
+</p>
+
+<p>
+  <b>Artwork type:</b>
+  <%= @artwork.artwork_type_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_artwork_path(@artwork) %> |
+<%= link_to 'Back', artworks_path %>
