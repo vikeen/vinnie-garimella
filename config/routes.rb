@@ -1,6 +1,12 @@
 Vgarimella::Application.routes.draw do
-  resources :artworks
+  root to: 'static_pages#home'
 
+  # static pages
+  match '/contact' => 'static_pages#contact'
+  match '/cvv' => 'static_pages#cvv'
+
+  # model resources
+  resources :artworks
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -51,7 +57,6 @@ Vgarimella::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
 
   # See how all your routes lay out with "rake routes"
 
