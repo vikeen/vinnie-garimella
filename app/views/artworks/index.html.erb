@@ -3,9 +3,9 @@
 <table>
   <tr>
     <th>Name</th>
-    <th>Filename</th>
     <th>Description</th>
-    <th>Artwork type</th>
+    <th>File</th>
+    <th>Type</th>
     <th></th>
     <th></th>
     <th></th>
@@ -14,8 +14,8 @@
 <% @artworks.each do |artwork| %>
   <tr>
     <td><%= artwork.name %></td>
-    <td><%= artwork.filename %></td>
     <td><%= artwork.description %></td>
+    <td><%= artwork.attachment%></td>
     <td><%= artwork.artwork_type_id %></td>
     <td><%= link_to 'Show', artwork %></td>
     <td><%= link_to 'Edit', edit_artwork_path(artwork) %></td>

@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+# Add supported artwork types
+['Painting', 'Photograph'].each do |artwork_type|
+  ArtworkType.find_or_create_by_name(artwork_type)
+end

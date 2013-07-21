@@ -16,18 +16,18 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :filename %><br />
-    <%= f.text_field :filename %>
+    <%= f.label 'Image' %><br />
+    <%= f.file_field :attachment %>
   </div>
   <div class="field">
     <%= f.label :description %><br />
     <%= f.text_field :description %>
   </div>
   <div class="field">
-    <%= f.label :artwork_type_id %><br />
-    <%= f.number_field :artwork_type_id %>
+    <%= f.label 'Type' %><br />
+    <%= f.select :artwork_type_id, ArtworkType.all.collect {|at| [ at.name, at.id ] } %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Publish' %>
   </div>
 <% end %>
