@@ -5,7 +5,7 @@ class Artwork < ActiveRecord::Base
   has_attached_file :attachment, :styles => { :normal => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
 
   validates :name, presence: true
-  validates :type_id, presence: true
+  validates :artwork_type_id, presence: true
   validates :attachment, presence: true
   validates :description, presence: true
 end
