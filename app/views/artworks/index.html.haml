@@ -1,18 +1,10 @@
 %h1 Listing artworks
-
-%table
-    %tr
-        %th Name
-        %th Description
-        %th File
-
-    -@artworks.each do |artwork|
-    %tr
-        %td #{ artwork.name }
-        %td #{ artwork.description }
-        %td #{ image_tag artwork.attachment }
-        %td #{ link_to 'Show', artwork }
-        %td #{ link_to 'Edit', edit_artwork_path(artwork) }
-        %td #{ link_to 'Destroy', artwork, method: :delete, data: { confirm: 'Are you sure?' } }
-%br
-#{ link_to 'Publish New', new_artwork_path }
+-@artworks.each do |artwork|
+    .artwork
+        %h2
+            #{ link_to artwork.name, artwork }
+        #{ link_to image_tag(artwork.attachment.url(:normal)), artwork  }
+        %p #{ artwork.description }
+        /#{ link_to 'Edit', edit_artwork_path(artwork) }
+        /#{ link_to 'Destroy', artwork, method: :delete, data: { confirm: 'Are you sure?' } }
+= link_to 'Publish New', new_artwork_path

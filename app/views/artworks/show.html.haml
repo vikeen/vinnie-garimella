@@ -1,0 +1,7 @@
+%h2
+    = @artwork.name
+= image_tag @artwork.attachment.url(:normal), alt: @artwork.name
+%p
+    = @artwork.description
+= link_to 'Edit', edit_artwork_path(@artwork)
+= link_to 'Back', artworks_path
