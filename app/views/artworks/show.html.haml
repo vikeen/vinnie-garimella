@@ -1,7 +1,15 @@
-%h2
-    = @artwork.name
-= image_tag @artwork.attachment.url(:normal), alt: @artwork.name
-%p
-    = @artwork.description
-= link_to 'Edit', edit_artwork_path(@artwork)
-= link_to 'Back', artworks_path
+.content-wrapper
+    %h1 #{@artwork.name}
+    %p.description Description: #{@artwork.description}
+    .artwork
+        = image_tag @artwork.attachment.url(:normal), { alt: @artwork.name, class: :showcase }
+    .admin-buttons
+        %ul
+            %li
+                = button_to :Edit, edit_artwork_path(@artwork), { method: :get }
+            %li
+                = button_to :Delete, @artwork, { method: :delete, data: { confirm: "Delete: #{@artwork.name}?" } }
+    .general-buttons
+        %ul
+            %li
+                = button_to "Return To Gallery", artworks_path, { method: :get }

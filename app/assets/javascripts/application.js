@@ -13,3 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$(document).ready(function() {
+
+    // Replace "no-js" tag in <html>
+    $("html").removeClass('no-js');
+    $("html").addClass('js');
+});

@@ -1,0 +1,203 @@
+// global
+@import "bootstrap";
+
+@mixin box_sizing {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { *zoom: 1; }
+
+html {  background: #F6F4F0; }
+body {  padding-top: 60px; }
+
+a { text-decoration: none; }
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+h1 {
+    font-size: 3.0em;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #666;
+    font-family: 'Parisienne', cursive;
+}
+h2 {
+    font-size: 2.3em;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: normal;
+    color: #333;
+}
+
+h1 a, h2 a {
+    color: inherit;
+    font-weight: inherit;
+    &:hover { color: inherit; }
+}
+
+p { font-size: 1.1em; line-height: 1.7em; }
+p.description { color: $grayLight }
+
+// layout
+.wrapper { width: 960px; margin: 0 auto; padding: 10px 20px; }
+
+#content {
+    margin: 120px 0 20px 0;
+}
+.content-wrapper {
+    width: 600px;
+    margin: 0 auto;
+    display: block;
+
+}
+
+// header
+header {
+    @include clearfix;
+    border-bottom: 1px solid #eaeaea;
+    margin: 30px 0 0 0;
+}
+
+h1#logo {
+    font-size: 4.5em;
+    font-weight: normal;
+    line-height: 0.6;
+    text-align: center;
+    margin: 0;
+    a {
+        color: #43298E;
+        &:hover { text-decoration: none; }
+    }
+}
+
+// rails admin items
+.admin-buttons {
+    @include clearfix;
+    margin: 10px 0 10px 5px;
+    list-style: none;
+    form { margin-bottom: 0; }
+    ul {
+        list-style: none;
+        float: right;
+        li {
+            float: left;
+            margin-left: 25px;
+        }
+    }
+}
+
+// general buttons
+.general-buttons {
+    @extend .admin-buttons;
+}
+
+// artwork
+.artwork-gallery {
+    @extend .clearfix;
+    margin-bottom: 25px;
+
+    h2 {
+        font-size: 1.5em;
+        text-align: left;
+        margin-bottom: 15px;
+    }
+    .artwork {
+        display: inline;
+        float: left;
+        padding: 0 15px;
+        width: 50%;
+        img {
+            height: 350px;
+            width: 100%;
+        }
+    }
+}
+
+.artwork {
+    @include box_sizing;
+    img.showcase { width: 100%; margin: 10px 0 }
+    img {
+        -webkit-box-shadow: 0px 0px 4px 2px #666;
+                box-shadow: 0px 0px 4px 2px #666;
+        display: block;
+        margin-bottom: 5px;
+    }
+}
+
+.gallery-search-form { @extend .clearfix;
+    form {
+        float: right;
+        width: 200px;
+        select { width: auto; }
+    }
+}
+
+
+// footer
+footer {
+    @include clearfix;
+    margin-top: 45px;
+    padding-top: 5px;
+    border-top: 1px solid #eaeaea;
+    color: $grayLight;
+
+    a {
+        color: #555;
+        &:hover { color: #222; }
+    }
+    small { float: left; }
+    ul {
+        float: right;
+        list-style: none;
+    }
+    ul li {
+        float: left;
+        margin-left: 10px;
+    }
+}
+
+// forms
+input, textarea, select, .uneditable-input {
+    border: 1px solid #bbb;
+    margin-bottom: 15px;
+    width: 100%;
+    @include box_sizing;
+}
+
+textarea { max-height: 200px; }
+.file-upload { border: none; }
+
+input { height: auto !important; }
+
+#error_explanation {
+  color: #f00;
+  margin-bottom: 35px auto;
+  width: 500px;
+
+  h2 {
+    font-size: 1.3em;
+  }
+  ul {
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
+}
+
+.field_with_errors {
+  @extend .control-group;
+  @extend .error;
+}
+
+// misc
+.debug_dump {
+    @include box_sizing;
+    clear: both;
+    float: left;
+    width: 100%;
+    margin-top: 45px;
+}

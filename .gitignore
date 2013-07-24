@@ -21,3 +21,6 @@ doc/
 .project
 .DS_Store
 .idea
+
+# ignore public attachements being added
+public/system/

@@ -11,30 +11,3 @@
  *= require_self
  *= require_tree .
  */
-
-.wrapper {
-    max-width: 960px;
-    margin: 0 auto;
-}
-
-#logo {
-    margin: 0 auto;
-    font-size: 30px;
-}
-
-.artwork {
-    display: inline;
-    width: 50%;
-    float: left;
-}
-
-footer {
-    nav {
-        float: right;
-        li {
-            list-style: none;
-            float: left;
-            margin-left: 40px;
-        }
-    }
-}

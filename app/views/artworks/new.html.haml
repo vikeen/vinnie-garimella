@@ -1,3 +1,7 @@
-%h1 New Artwork
-= render 'form'
-= link_to 'Back', artworks_path
+.content-wrapper
+    %h1 New Artwork
+    = render 'form'
+    .admin-buttons
+        %ul
+            %li
+                = button_to :Back, artworks_path, { method: :get }

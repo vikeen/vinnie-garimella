@@ -1,10 +1,20 @@
-%h1 Listing artworks
--@artworks.each do |artwork|
-    .artwork
-        %h2
-            #{ link_to artwork.name, artwork }
-        #{ link_to image_tag(artwork.attachment.url(:normal)), artwork  }
-        %p #{ artwork.description }
-        /#{ link_to 'Edit', edit_artwork_path(artwork) }
-        /#{ link_to 'Destroy', artwork, method: :delete, data: { confirm: 'Are you sure?' } }
-= link_to 'Publish New', new_artwork_path
+= provide :title, 'Gallery'
+%h1 Gallery
+= render 'gallery_form'
+
+.artwork-gallery.clearfix
+    -@artworks.each do |artwork|
+        .artwork
+            %h2
+                #{ link_to artwork.name, artwork }
+            #{ link_to image_tag(artwork.attachment.url(:normal)), artwork  }
+            .admin-buttons
+                %ul
+                    %li
+                        = button_to :Edit, edit_artwork_path(artwork), { method: :get }
+                    %li
+                        = button_to :Delete, artwork, { method: :delete, data: { confirm: "Delete: #{artwork.name}?" } }
+.general-buttons
+    %ul
+        %li
+            = button_to "Publish New", new_artwork_path, { method: :get }

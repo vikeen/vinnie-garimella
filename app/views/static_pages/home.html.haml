@@ -1,2 +1,3 @@
-%h1 StaticPages#home
-%p Find me in #{__FILE__}
+-@artwork_types.each do |artwork_type|
+    %h1
+        = link_to "#{artwork_type.name}s", artworks_path( artwork_types_id: artwork_type.id )

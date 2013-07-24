@@ -2,11 +2,15 @@ class ArtworksController < ApplicationController
   # GET /artworks
   # GET /artworks.json
   def index
-    @artworks = Artwork.all
+    if !params[:artwork_types_id].nil? && !params[:artwork_types_id].empty?
+        @artworks = Artwork.where( artwork_types_id: params[:artwork_types_id] )
+    else
+        @artworks = Artwork.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @artworks }
+      #format.json { render json: @artworks }
     end
   end
 
@@ -17,7 +21,7 @@ class ArtworksController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @artwork }
+      #format.json { render json: @artwork }
     end
   end
 
@@ -28,7 +32,7 @@ class ArtworksController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @artwork }
+      #format.json { render json: @artwork }
     end
   end
 
@@ -44,11 +48,17 @@ class ArtworksController < ApplicationController
 
     respond_to do |format|
       if @artwork.save
-        format.html { redirect_to @artwork, notice: 'Artwork was successfully created.' }
-        format.json { render json: @artwork, status: :created, location: @artwork }
+        format.html {
+            flash[:success] = 'Artwork was successfully created.'
+            redirect_to @artwork
+        }
+        #format.json { render json: @artwork, status: :created, location: @artwork }
       else
-        format.html { render action: "new" }
-        format.json { render json: @artwork.errors, status: :unprocessable_entity }
+        format.html {
+            flash[:error] = 'Failed to create Artwork.'
+            render action: "new"
+        }
+        #format.json { render json: @artwork.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -60,11 +70,17 @@ class ArtworksController < ApplicationController
 
     respond_to do |format|
       if @artwork.update_attributes(params[:artwork])
-        format.html { redirect_to @artwork, notice: 'Artwork was successfully updated.' }
-        format.json { head :no_content }
+        format.html {
+            redirect_to @artwork
+            flash[:success] = 'Artwork was successfully updated.'
+        }
+        #format.json { head :no_content }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @artwork.errors, status: :unprocessable_entity }
+        format.html {
+            render action: "edit"
+            flash[:error] = 'Failed to update Artwork.'
+        }
+        #format.json { render json: @artwork.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -77,7 +93,7 @@ class ArtworksController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to artworks_url }
-      format.json { head :no_content }
+      #format.json { head :no_content }
     end
   end
 end

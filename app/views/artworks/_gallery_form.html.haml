@@ -1,0 +1,4 @@
+.gallery-search-form
+    = form_tag( '/artworks', method: :get, class: 'gallery-search-form' ) do
+        = select_tag :artwork_types_id, options_for_select(ArtworkType.all.collect {|at| [ at.name, at.id ]}, params[:artwork_types_id]), prompt: 'All'
+        = submit_tag 'Search'
