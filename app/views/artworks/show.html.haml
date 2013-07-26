@@ -1,15 +1,16 @@
 .content-wrapper
-    %h1 #{@artwork.name}
-    %p.description Description: #{@artwork.description}
-    .artwork
-        = image_tag @artwork.attachment.url(:normal), { alt: @artwork.name, class: :showcase }
+  %h1 #{@artwork.name}
+  %p.description Description: #{@artwork.description}
+  .artwork
+    = image_tag @artwork.attachment.url(:normal), { alt: @artwork.name, class: :showcase }
+  - if current_user
     .admin-buttons
-        %ul
-            %li
-                = button_to :Edit, edit_artwork_path(@artwork), { method: :get }
-            %li
-                = button_to :Delete, @artwork, { method: :delete, data: { confirm: "Delete: #{@artwork.name}?" } }
-    .general-buttons
-        %ul
-            %li
-                = button_to "Return To Gallery", artworks_path, { method: :get }
+      %ul
+        %li
+          = button_to :Edit, edit_artwork_path(@artwork), { method: :get }
+        %li
+          = button_to :Delete, @artwork, { method: :delete, data: { confirm: "Delete: #{@artwork.name}?" } }
+  .general-buttons
+    %ul
+      %li
+        = button_to "Return To Gallery", artworks_path, { method: :get }

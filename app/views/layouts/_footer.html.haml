@@ -1,7 +1,8 @@
 %footer
   %nav
     %ul
-      %li #{ link_to :Admin, log_in_path }
-      /%li #{ link_to :Gallery, artworks_path }
-      /%li #{ link_to :CVV, cvv_path }
-      /%li #{ link_to :Contact, contact_path }
+      - if current_user
+        %li Logged in as #{current_user.email}.
+        %li #{link_to "Log out", log_out_path}
+      - else
+        %li #{ link_to "Log in", log_in_path }

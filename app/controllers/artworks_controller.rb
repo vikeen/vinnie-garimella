@@ -1,99 +1,68 @@
 class ArtworksController < ApplicationController
-  # GET /artworks
-  # GET /artworks.json
   def index
     if !params[:artwork_types_id].nil? && !params[:artwork_types_id].empty?
         @artworks = Artwork.where( artwork_types_id: params[:artwork_types_id] )
     else
         @artworks = Artwork.all
     end
-
-    respond_to do |format|
-      format.html # index.html.erb
-      #format.json { render json: @artworks }
-    end
   end
 
-  # GET /artworks/1
-  # GET /artworks/1.json
   def show
     @artwork = Artwork.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      #format.json { render json: @artwork }
-    end
   end
 
-  # GET /artworks/new
-  # GET /artworks/new.json
   def new
-    @artwork = Artwork.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      #format.json { render json: @artwork }
+    if current_user
+      @artwork = Artwork.new
+    else
+      redirect_to artworks_url
     end
   end
 
-  # GET /artworks/1/edit
   def edit
-    @artwork = Artwork.find(params[:id])
+    if current_user
+      @artwork = Artwork.find(params[:id])
+    else
+      redirect_to artworks_url
+    end
   end
 
-  # POST /artworks
-  # POST /artworks.json
   def create
-    @artwork = Artwork.new(params[:artwork])
-
-    respond_to do |format|
-      if @artwork.save
-        format.html {
-            flash[:success] = 'Artwork was successfully created.'
-            redirect_to @artwork
-        }
-        #format.json { render json: @artwork, status: :created, location: @artwork }
-      else
-        format.html {
-            flash[:error] = 'Failed to create Artwork.'
-            render action: "new"
-        }
-        #format.json { render json: @artwork.errors, status: :unprocessable_entity }
-      end
+    if current_user
+      @artwork = Artwork.new(params[:artwork])
+        if @artwork.save
+          flash[:success] = 'Artwork was successfully created.'
+          redirect_to @artwork
+        else
+          flash[:error] = 'Failed to create Artwork.'
+          render action: "new"
+        end
+    else
+      redirect_to artworks_url
     end
   end
 
-  # PUT /artworks/1
-  # PUT /artworks/1.json
   def update
-    @artwork = Artwork.find(params[:id])
-
-    respond_to do |format|
+    if current_user
+      @artwork = Artwork.find(params[:id])
       if @artwork.update_attributes(params[:artwork])
-        format.html {
-            redirect_to @artwork
-            flash[:success] = 'Artwork was successfully updated.'
-        }
-        #format.json { head :no_content }
+        redirect_to @artwork
+        flash[:success] = 'Artwork was successfully updated.'
       else
-        format.html {
-            render action: "edit"
-            flash[:error] = 'Failed to update Artwork.'
-        }
-        #format.json { render json: @artwork.errors, status: :unprocessable_entity }
+        render action: "edit"
+        flash[:error] = 'Failed to update Artwork.'
       end
+    else
+      redirect_to artworks_url
     end
   end
 
-  # DELETE /artworks/1
-  # DELETE /artworks/1.json
   def destroy
-    @artwork = Artwork.find(params[:id])
-    @artwork.destroy
-
-    respond_to do |format|
-      format.html { redirect_to artworks_url }
-      #format.json { head :no_content }
+    if current_user
+      @artwork = Artwork.find(params[:id])
+      @artwork.destroy
     end
+
+    redirect_to artworks_url
   end
 end

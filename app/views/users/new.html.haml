@@ -2,7 +2,7 @@
 
 .content-wrapper
   = form_for @user do |f|
-    - if @user.errors.any? 
+    - if @user.errors.any?
       #error_explanation
         %h2 #{pluralize(@user.errors.count, "error")} prohibited this user form being created
         %ul
@@ -10,12 +10,12 @@
             %li #{msg}
     .field
       = f.label :email
-      = f.text_field :email 
+      = f.text_field :email
     .field
       = f.label :password
-      = f.password_field :password 
+      = f.password_field :password
     .field
       = f.label :password_confirmation
-      = f.password_field :password_confirmation 
+      = f.password_field :password_confirmation
     .actions
       = f.submit 'Create User'
