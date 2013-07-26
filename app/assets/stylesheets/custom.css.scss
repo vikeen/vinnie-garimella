@@ -56,11 +56,25 @@ p.description { color: $grayLight }
 
 }
 
+header nav, footer nav {
+  ul {
+    float: right;
+    list-style: none;
+  }
+  ul li {
+    float: left;
+    margin-left: 20px;
+  }
+}
+
+
 // header
 header {
-    @include clearfix;
-    border-bottom: 1px solid #eaeaea;
-    margin: 30px 0 0 0;
+  @include clearfix;
+  border-bottom: 2px solid #666;
+  margin: 30px 0 0 0;
+  color: $grayLight;
+  a, a:hover { color: inherit; }
 }
 
 h1#logo {
@@ -69,6 +83,7 @@ h1#logo {
     line-height: 0.6;
     text-align: center;
     margin: 0;
+    float: left;
     a {
         color: #43298E;
         &:hover { text-decoration: none; }
@@ -143,7 +158,7 @@ footer {
     @include clearfix;
     margin-top: 45px;
     padding-top: 5px;
-    border-top: 1px solid #eaeaea;
+    border-top: 3px solid #666;
     color: $grayLight;
 
     a {
@@ -151,14 +166,6 @@ footer {
         &:hover { color: #222; }
     }
     small { float: left; }
-    ul {
-        float: right;
-        list-style: none;
-    }
-    ul li {
-        float: left;
-        margin-left: 10px;
-    }
 }
 
 // forms
@@ -173,6 +180,10 @@ textarea { max-height: 200px; }
 .file-upload { border: none; }
 
 input { height: auto !important; }
+input[type="submit"], input[type="button"] {
+  background-color: #43298E;
+  color: #fff;
+}
 
 #error_explanation {
   color: #f00;
