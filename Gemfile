@@ -5,6 +5,7 @@ gem 'bootstrap-sass', '2.1'
 gem 'bcrypt-ruby', '3.0.1', :require => "bcrypt"
 gem 'haml'
 gem "paperclip", "~> 3.0"
+gem 'aws-sdk'
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'
